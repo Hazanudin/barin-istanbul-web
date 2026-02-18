@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f5;
+  --foreground: #3D2B1F;
+  --gold-dark: #bfa035;
+  --gold-base: #D4AF37;
+  --gold-light: #E8C84A;
+  --gold-shine: #F2D97D;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #3D2B1F;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #bfa035;
+  --color-gold-light: #E8C84A;
+  --color-gold-shine: #F2D97D;
+  --color-cream: #faf8f5;
+  --color-warm-gray: #f0ece6;
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Gold gradient text utility */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-base) 40%, var(--gold-shine) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold gradient background utility */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-base) 50%, var(--gold-light) 100%);
+}
+
+/* Gold glow effect */
+.gold-glow {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25), 0 0 45px rgba(212, 175, 55, 0.08);
+}
+
+/* Gold text shadow for radiance */
+.gold-text-glow {
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.3), 0 0 30px rgba(212, 175, 55, 0.15);
+}
+
+/* Scrollbar hide utility */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Drawer overlay */
+.drawer-overlay {
+  background: rgba(61, 43, 31, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Admin toast slide in */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Admin dashboard scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

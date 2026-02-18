@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Details View - Premium Turkish Hijab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#eead2b",
+              "background-light": "#f8f7f6",
+              "background-dark": "#221c10",
+              "stone-100": "#f5f5f4",
+              "stone-200": "#e7e5e4",
+              "stone-800": "#292524",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"],
+              "serif": ["Playfair Display", "serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for gallery thumbnails */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-stone-800 dark:text-stone-200 antialiased selection:bg-primary/30">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-stone-200 dark:border-stone-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Mobile Menu Button -->
+<div class="flex items-center md:hidden">
+<button class="text-stone-800 dark:text-stone-200 hover:text-primary transition-colors">
+<span class="material-icons">menu</span>
+</button>
+</div>
+<!-- Logo -->
+<div class="flex-shrink-0 flex items-center justify-center md:justify-start flex-1 md:flex-none">
+<a class="font-serif text-2xl font-bold tracking-wider" href="#">LALEZAR</a>
+</div>
+<!-- Desktop Links -->
+<div class="hidden md:flex space-x-8 items-center justify-center flex-1">
+<a class="text-sm uppercase tracking-widest hover:text-primary transition-colors" href="#">New Arrivals</a>
+<a class="text-sm uppercase tracking-widest hover:text-primary transition-colors" href="#">Silk Series</a>
+<a class="text-sm uppercase tracking-widest hover:text-primary transition-colors" href="#">Chiffon</a>
+<a class="text-sm uppercase tracking-widest hover:text-primary transition-colors text-primary font-semibold" href="#">Sale</a>
+</div>
+<!-- Icons -->
+<div class="flex items-center space-x-4 md:space-x-6">
+<button class="text-stone-800 dark:text-stone-200 hover:text-primary transition-colors">
+<span class="material-icons text-xl md:text-2xl">search</span>
+</button>
+<button class="text-stone-800 dark:text-stone-200 hover:text-primary transition-colors">
+<span class="material-icons text-xl md:text-2xl">favorite_border</span>
+</button>
+<button class="text-stone-800 dark:text-stone-200 hover:text-primary transition-colors relative">
+<span class="material-icons text-xl md:text-2xl">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">2</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<!-- Breadcrumbs -->
+<div class="mb-8 flex items-center text-xs uppercase tracking-widest text-stone-500 dark:text-stone-400">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="mx-2">/</span>
+<a class="hover:text-primary transition-colors" href="#">Collections</a>
+<span class="mx-2">/</span>
+<a class="hover:text-primary transition-colors" href="#">Silk Series</a>
+<span class="mx-2">/</span>
+<span class="text-stone-800 dark:text-stone-200 font-semibold">Topkapi Cream</span>
+</div>
+<div class="lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-16">
+<!-- Left Column: Image Gallery -->
+<div class="lg:col-span-7 flex flex-col-reverse lg:flex-row gap-4 mb-10 lg:mb-0">
+<!-- Thumbnails (Vertical on Desktop, Horizontal on Mobile) -->
+<div class="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible lg:w-24 no-scrollbar pb-2 lg:pb-0">
+<button class="flex-shrink-0 w-20 h-24 lg:w-full lg:h-32 rounded-lg overflow-hidden border-2 border-primary ring-2 ring-primary/20 transition-all">
+<img alt="Cream silk hijab texture closeup" class="w-full h-full object-cover" data-alt="Cream silk hijab texture closeup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRJFcaWEXBB_lx0ooiGvzHwFYfreljsOwaiAm8XL1DSOOwvQxUmc2ZNqWc4nxrxuMTinsKzfHuM5YsvV-F4bFp4C4l3loabsbjxhX_b0hSGJ6mxcdSFi6je7N_K9lP49kpvaFktN1CxvToihQftelfmGE4PaPLKCL5ogIIzW51f9xpnCBxvlyicUWjz9QAIDyhiPX9cabttgcPhOpkwFmYQ7qNgsdMMG0sIZarSeH0OtIe28h8y0d08dkZNF2DAI2x5QKpe9kWdS0"/>
+</button>
+<button class="flex-shrink-0 w-20 h-24 lg:w-full lg:h-32 rounded-lg overflow-hidden border border-transparent hover:border-stone-300 dark:hover:border-stone-600 transition-all opacity-70 hover:opacity-100">
+<img alt="Hijab draped on model shoulder" class="w-full h-full object-cover" data-alt="Hijab draped on model shoulder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4YYXK7ba5KwfjPs6Fq0X7jZF1KD5w_ZFGc_gcyt-_U59LQqyvhpy9cN_TlC_2WtjUlCcq0Oll8alpwQOv3fVuAR_yJ0KgBrvHQc1SLGsMqCQB9Xiz7rrBtcw3USgD8cv7PjDutFpJlmV9ANgm79d61FAtQ_bM4JdMeVWOXWPtkFQp-sG8o_5_59Cfr5wcXTxNYNjAdWpKyATNoJxtRM-eKGuKfxkNyO9nC_odX-nFLykWt7PAoJdLlFDYmBAj9YkYCP9Fh967hsM"/>
+</button>
+<button class="flex-shrink-0 w-20 h-24 lg:w-full lg:h-32 rounded-lg overflow-hidden border border-transparent hover:border-stone-300 dark:hover:border-stone-600 transition-all opacity-70 hover:opacity-100">
+<img alt="Flat lay of folded hijab" class="w-full h-full object-cover" data-alt="Flat lay of folded hijab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK09dn4kguCC8di4QxBMNyL_Ief4ILp8n0uN-hSspGD7-FqtZzmHtsJZt9Qa02gmzzcAtIh3VS7-cHDBDktwtSDcuPtJmhDPJkDToTBn-uvKrw3Ft9wlio19EowZPRjFaQbpc6lgvphsjibF2Vuu61qAFLMsaMLvfCvRNVW_RS4QusNLvBYsBMqyBMiaJwNmikQvXqLULRv48Z2xX5oB-MdJRNzLj2DCRZgtiDsnPRR9RPRko3nB9nJmRDtTainGMVfl7fpvQC8AI"/>
+</button>
+<button class="flex-shrink-0 w-20 h-24 lg:w-full lg:h-32 rounded-lg overflow-hidden border border-transparent hover:border-stone-300 dark:hover:border-stone-600 transition-all opacity-70 hover:opacity-100">
+<img alt="Model wearing hijab side view" class="w-full h-full object-cover" data-alt="Model wearing hijab side view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBadYVyEIkwqiocqwLV65Bsqb1d4mu_9KX136grpOhU8LnAUedJbd_SpbS43ev6iT06wxoQRs78j2kMXPG3fqRELX7w2EuMjKw5kMqAgzrhhMNyvCgu-ADpRVj6xWKeO3Gke5imL5KW_ACT8639nlWcYPDCDqWfHqod0iCb2OCXTZMrWCTqAbvNwrH3TaxJODM2uwxmFPY7BhPP-v-RnGZPpqMCp26B9JX7taPo2THbNejPmThXXYA2CYFTIDBM_gCewxKpRjOUJY"/>
+</button>
+</div>
+<!-- Main Image -->
+<div class="flex-1 relative group overflow-hidden rounded-xl bg-stone-100 dark:bg-stone-800">
+<img alt="Woman wearing cream turkish silk hijab" class="w-full h-[500px] lg:h-[800px] object-cover transition-transform duration-700 ease-in-out group-hover:scale-105 cursor-zoom-in" data-alt="Woman wearing cream turkish silk hijab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf1kIpcr144pIJ5x_eYwoJzF-D_UsIhG2GavPZ-7f_B9APwKorOxYUxYTevuu4aIIXYUJX2y3aL3tnSmAxKQkm1OCWTBlwSvfHtZpz1L-xT5xG7HN_Ns_2838uPxwoypwRkDztRxOrYX-Pi9HPkpCNYaWJ0mz70gRwo4g3fJULWmerNgdyO19HrRVpo8MDAJLvpvggHLt0q1yAj5oLVpHOW8UZ0bl503K7GSXBeDR15CXvu-xDpf2Mzmi0QppK_Ex5p18wQ9nGcYw"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Bestseller</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Product Info -->
+<div class="lg:col-span-5 flex flex-col h-full">
+<div class="sticky top-24">
+<!-- Title & Price -->
+<div class="border-b border-stone-200 dark:border-stone-700 pb-6 mb-6">
+<div class="flex justify-between items-start mb-2">
+<h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-stone-900 dark:text-white leading-tight">The Topkapi Silk Series - Cream</h1>
+<!-- Wishlist Button Mobile/Tablet placement -->
+<button class="ml-4 p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors text-stone-400 hover:text-red-500">
+<span class="material-icons">favorite_border</span>
+</button>
+</div>
+<div class="flex items-baseline gap-4 mt-4">
+<span class="text-2xl md:text-3xl font-bold text-stone-900 dark:text-white">Rp 350.000</span>
+<span class="text-sm text-green-600 font-medium flex items-center">
+<span class="material-icons text-sm mr-1">check_circle</span> In Stock
+                            </span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-icons text-sm">star</span>
+<span class="material-icons text-sm">star</span>
+<span class="material-icons text-sm">star</span>
+<span class="material-icons text-sm">star</span>
+<span class="material-icons text-sm">star_half</span>
+</div>
+<span class="text-xs text-stone-500 dark:text-stone-400 font-medium underline cursor-pointer hover:text-primary">(128 Reviews)</span>
+</div>
+</div>
+<!-- Description -->
+<p class="text-stone-600 dark:text-stone-300 leading-relaxed mb-8 font-light">
+                        Handcrafted in Bursa, this premium silk hijab offers a lustrous sheen and breathable comfort perfect for the tropical climate. The delicate weave ensures it drapes beautifully without slipping, making it an essential piece for elegant occasions.
+                    </p>
+<!-- Color Selection -->
+<div class="mb-8">
+<h3 class="text-sm uppercase tracking-widest font-semibold text-stone-900 dark:text-white mb-4">Select Color: <span class="text-stone-500 font-normal ml-2">Cream</span></h3>
+<div class="flex flex-wrap gap-3">
+<!-- Selected Color -->
+<button aria-label="Cream" class="w-10 h-10 rounded-full bg-[#f5f5dc] border border-stone-300 ring-2 ring-offset-2 ring-primary ring-offset-white dark:ring-offset-background-dark shadow-sm"></button>
+<!-- Other Colors -->
+<button aria-label="Tan" class="w-10 h-10 rounded-full bg-[#d2b48c] border border-stone-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary/50 hover:ring-offset-white dark:hover:ring-offset-background-dark transition-all shadow-sm"></button>
+<button aria-label="Burgundy" class="w-10 h-10 rounded-full bg-[#800020] border border-stone-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary/50 hover:ring-offset-white dark:hover:ring-offset-background-dark transition-all shadow-sm"></button>
+<button aria-label="Black" class="w-10 h-10 rounded-full bg-[#000000] border border-stone-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary/50 hover:ring-offset-white dark:hover:ring-offset-background-dark transition-all shadow-sm"></button>
+<button aria-label="Lavender" class="w-10 h-10 rounded-full bg-[#e6e6fa] border border-stone-300 hover:ring-2 hover:ring-offset-2 hover:ring-primary/50 hover:ring-offset-white dark:hover:ring-offset-background-dark transition-all shadow-sm"></button>
+</div>
+</div>
+<!-- Add to Cart Actions -->
+<div class="flex flex-col sm:flex-row gap-4 mb-8">
+<div class="relative w-full sm:w-32">
+<input class="w-full pl-4 pr-8 py-3.5 bg-stone-50 dark:bg-stone-800 border border-stone-300 dark:border-stone-600 rounded-lg text-center font-bold focus:ring-primary focus:border-primary" max="10" min="1" type="number" value="1"/>
+<div class="absolute right-3 top-0 bottom-0 flex flex-col justify-center gap-1">
+<button class="text-stone-400 hover:text-primary"><span class="material-icons text-xs">keyboard_arrow_up</span></button>
+<button class="text-stone-400 hover:text-primary"><span class="material-icons text-xs">keyboard_arrow_down</span></button>
+</div>
+</div>
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg shadow-primary/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+<span class="material-icons">shopping_bag</span>
+                            ADD TO CART
+                        </button>
+</div>
+<!-- Meta Info & Accordions -->
+<div class="space-y-4">
+<!-- Product Details Accordion -->
+<div class="border border-stone-200 dark:border-stone-700 rounded-lg overflow-hidden">
+<button class="w-full flex justify-between items-center p-4 bg-stone-50 dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors text-left">
+<span class="font-semibold text-stone-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-stone-400">info</span> Product Details
+                                </span>
+<span class="material-icons text-stone-400">expand_more</span>
+</button>
+<div class="p-4 bg-white dark:bg-stone-900 border-t border-stone-200 dark:border-stone-700 text-sm text-stone-600 dark:text-stone-300 space-y-2">
+<p><span class="font-bold text-stone-800 dark:text-stone-200">Material:</span> 100% Turkish Silk Satin</p>
+<p><span class="font-bold text-stone-800 dark:text-stone-200">Dimensions:</span> 110cm x 110cm</p>
+<p><span class="font-bold text-stone-800 dark:text-stone-200">Finish:</span> Hand-rolled hem</p>
+<p><span class="font-bold text-stone-800 dark:text-stone-200">Opacity:</span> Opaque when folded</p>
+</div>
+</div>
+<!-- Shipping Accordion -->
+<div class="border border-stone-200 dark:border-stone-700 rounded-lg overflow-hidden">
+<button class="w-full flex justify-between items-center p-4 bg-stone-50 dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors text-left">
+<span class="font-semibold text-stone-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-stone-400">local_shipping</span> Shipping &amp; Returns
+                                </span>
+<span class="material-icons text-stone-400">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="grid grid-cols-3 gap-2 mt-8 py-6 border-t border-stone-200 dark:border-stone-700">
+<div class="text-center">
+<span class="material-icons text-primary text-3xl mb-1">verified_user</span>
+<p class="text-[10px] uppercase tracking-wider font-bold text-stone-500">Authentic<br/>Turkish Silk</p>
+</div>
+<div class="text-center border-l border-stone-200 dark:border-stone-700">
+<span class="material-icons text-primary text-3xl mb-1">local_shipping</span>
+<p class="text-[10px] uppercase tracking-wider font-bold text-stone-500">Fast Shipping<br/>Indonesia-wide</p>
+</div>
+<div class="text-center border-l border-stone-200 dark:border-stone-700">
+<span class="material-icons text-primary text-3xl mb-1">assignment_return</span>
+<p class="text-[10px] uppercase tracking-wider font-bold text-stone-500">7-Day<br/>Returns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Products Section -->
+<section class="mt-20 pt-10 border-t border-stone-200 dark:border-stone-800">
+<h2 class="font-serif text-3xl text-stone-900 dark:text-white mb-8 text-center">Complete The Look</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800 aspect-[4/5] mb-4">
+<img alt="Deep red turkish silk hijab" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Deep red turkish silk hijab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk0-zfVpowJrdk6BvTSCam89Ne7N3h0z3QvaZXKWHpmdKudbOnfOz_vL9CjhOQVFtmm2XwB_k5XXbryD-B3eh7rmrfysfuD6EIfypFlhODPahhjf0GIosHIx-JV_cz3ekQ8h_f4nQ1emMWxFl-CAHpwYhDxEsCyr84kmyaxT8_3F9uZTfqSs5UIg8VgHihQf2HXIGvf1HooUnMMeGIN2uR_h6i8K0uubg0_rTh-b5RRzEEWaGQItD1tfDvMkxzFuMX3C9JcrXfC_A"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+<button class="absolute bottom-4 right-4 bg-white dark:bg-stone-800 text-stone-800 dark:text-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300 hover:text-primary">
+<span class="material-icons text-sm">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-display font-medium text-stone-900 dark:text-white text-lg">Topkapi Ruby Red</h3>
+<p class="text-stone-500 text-sm mt-1">Rp 350.000</p>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800 aspect-[4/5] mb-4">
+<img alt="Emerald green silk scarf on hanger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Emerald green silk scarf on hanger" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb2Yw3yr-PqSVXeiDwnlAazwrSqHSAleuWwOp4PpsK-voIYB4A8vGvuS__g0l--tb6PEIh3J84jVszS5sB-Eo4-ALXyw3o4EjAInJYwzUQ6UJEdyeqZ7GyFQSKv_Y3dJTMwj5Wu9hjBJB0sW-vTOQLpaC0QrFaKYQ-mczqolkqmZKRokOVBg1oO4cs4UfmVYvZ1JSPb5ktShp2TYec9DPYI-wM44fIgQpbLDtVCTVuGVos3VfO9lYQ7R4Oal29Y88wM6HkkIBkAak"/>
+<div class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">NEW</div>
+<button class="absolute bottom-4 right-4 bg-white dark:bg-stone-800 text-stone-800 dark:text-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300 hover:text-primary">
+<span class="material-icons text-sm">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-display font-medium text-stone-900 dark:text-white text-lg">Topkapi Emerald</h3>
+<p class="text-stone-500 text-sm mt-1">Rp 350.000</p>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800 aspect-[4/5] mb-4">
+<img alt="Light blue patterned hijab" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Light blue patterned hijab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdMPAzcGV6QhtHPLbmU8UYxSHY0Sbr7pV2VwvuEVo6RjQSdVaFa3_yoblJzQXIL4bma9oLbie6QALN0m-68qi3Jeti8BzW5zB4q4pMb7spMt1r9WvJC5s7X7kg3irvk3iVW53O9mLsUUC3aq88BZcu-42ogxliAfKpASmEQ3tTw9fvWFv4VJLDBH70W2p7NwZFylSnh3McPSz8HSIQsz9mCpA-MMF7DUi2FJ6Ju8kkCf1E2STOju3lONl832K2nr5hED2NtEqbLss"/>
+<button class="absolute bottom-4 right-4 bg-white dark:bg-stone-800 text-stone-800 dark:text-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300 hover:text-primary">
+<span class="material-icons text-sm">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-display font-medium text-stone-900 dark:text-white text-lg">Bosporus Blue Print</h3>
+<p class="text-stone-500 text-sm mt-1">Rp 420.000</p>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800 aspect-[4/5] mb-4">
+<img alt="Minimalist magnet pin set for hijab" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist magnet pin set for hijab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWBLWhF9OPdvYOpIC-28l8_nQc77ZDt4vWiz4LYrBL6ndGgdHlnhsagYlkZES3DArXU0CZFlbv_a9DWiSDxCnBHiXM4VcJgnCx0nFH3zARX4UgeJZ7Wq0Wtg97M84em6aKoT-SZuJJmGU34MbgYmD7Q1YI-hrRrwjXtoQTUAF-xYknceXeIy2ggTWwrxE39BdgtR6bFwIqNZ7iNsstG0uSc2XvEud6N2u6pnajwvXfcrwsomMMMvObcMotQ3LshjQMnf6xLN5QTQM"/>
+<button class="absolute bottom-4 right-4 bg-white dark:bg-stone-800 text-stone-800 dark:text-white p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300 hover:text-primary">
+<span class="material-icons text-sm">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-display font-medium text-stone-900 dark:text-white text-lg">Premium Magnet Pins</h3>
+<p class="text-stone-500 text-sm mt-1">Rp 85.000</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-900 text-white mt-12 py-12 border-t border-primary/20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="space-y-4">
+<h4 class="font-serif text-2xl font-bold">LALEZAR</h4>
+<p class="text-stone-400 text-sm leading-relaxed max-w-xs">Premium Turkish hijabs bringing elegance and tradition to the modern Indonesian woman.</p>
+<div class="flex space-x-4">
+<a class="text-stone-400 hover:text-primary transition-colors" href="#"><span class="material-icons text-lg">facebook</span></a>
+<a class="text-stone-400 hover:text-primary transition-colors" href="#"><span class="material-icons text-lg">photo_camera</span></a>
+<a class="text-stone-400 hover:text-primary transition-colors" href="#"><span class="material-icons text-lg">alternate_email</span></a>
+</div>
+</div>
+<div>
+<h5 class="font-bold text-sm uppercase tracking-widest mb-4 text-primary">Shop</h5>
+<ul class="space-y-2 text-stone-400 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Silk Series</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Chiffon</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm uppercase tracking-widest mb-4 text-primary">Support</h5>
+<ul class="space-y-2 text-stone-400 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Shipping Info</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Returns &amp; Exchange</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Size Guide</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm uppercase tracking-widest mb-4 text-primary">Stay Updated</h5>
+<p class="text-stone-400 text-sm mb-4">Subscribe for exclusive offers and new collection drops.</p>
+<form class="flex flex-col gap-2">
+<input class="bg-stone-800 border-none rounded px-4 py-2 text-sm text-white focus:ring-1 focus:ring-primary placeholder-stone-500" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-white text-sm font-bold uppercase tracking-wider px-4 py-2 rounded hover:bg-primary/90 transition-colors" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-stone-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-stone-500">
+<p>© 2023 Lalezar Hijab. All rights reserved.</p>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<span>Terms &amp; Conditions</span>
+<span>Privacy Policy</span>
+</div>
+</div>
+</footer>
+</body></html>
