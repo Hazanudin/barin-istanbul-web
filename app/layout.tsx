@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import DataLoader from "./components/DataLoader";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -37,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${playfair.variable} font-sans antialiased`}
       >
-        {children}
+        <DataLoader>{children}</DataLoader>
       </body>
     </html>
   );

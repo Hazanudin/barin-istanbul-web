@@ -89,7 +89,9 @@ export default function ProductsPage() {
         setShowForm(true);
     };
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const [uploading, setUploading] = useState(false);
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
         if (!file.type.startsWith("image/")) {
@@ -100,9 +102,27 @@ export default function ProductsPage() {
             showToast("Ukuran file maksimal 5MB!");
             return;
         }
-        const reader = new FileReader();
-        reader.onloadend = () => setForm((prev) => ({ ...prev, image: reader.result as string }));
-        reader.readAsDataURL(file);
+
+        setUploading(true);
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            const res = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await res.json();
+            if (data.url) {
+                setForm((prev) => ({ ...prev, image: data.url }));
+                showToast("Gambar berhasil diupload! ✓");
+            } else {
+                showToast("Gagal upload gambar!");
+            }
+        } catch {
+            showToast("Gagal upload gambar!");
+        } finally {
+            setUploading(false);
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -514,9 +534,18 @@ export default function ProductsPage() {
                                 <label className="block text-sm font-medium text-white/60 mb-2">Gambar Produk *</label>
                                 <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                                 <div
-                                    className="w-full border-2 border-dashed border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-gold/40 hover:bg-white/[0.02] transition-all"
+                                    className={`w-full border-2 border-dashed border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-gold/40 hover:bg-white/[0.02] transition-all relative ${uploading ? "opacity-50 pointer-events-none" : ""
+                                        }`}
                                     onClick={() => fileInputRef.current?.click()}
                                 >
+                                    {uploading && (
+                                        <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/50 rounded-2xl backdrop-blur-[2px]">
+                                            <div className="flex flex-col items-center gap-2">
+                                                <div className="w-8 h-8 border-2 border-white/30 border-t-gold rounded-full animate-spin" />
+                                                <span className="text-white text-xs font-medium">Uploading...</span>
+                                            </div>
+                                        </div>
+                                    )}
                                     {form.image ? (
                                         <div className="relative w-full flex flex-col items-center gap-4">
                                             <div className="w-40 h-40 rounded-xl overflow-hidden shadow-lg">
@@ -671,9 +700,22 @@ export default function ProductsPage() {
                                 <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }} className="flex-1 py-3 rounded-xl border border-white/10 text-white/50 hover:bg-white/5 transition-all text-sm font-medium">
                                     Batal
                                 </button>
-                                <button type="submit" className="flex-1 bg-gold hover:bg-gold-dark text-white py-3 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-gold/20 flex items-center justify-center gap-2">
-                                    <span className="material-icons-outlined text-lg">{editingId ? "save" : "add"}</span>
-                                    {editingId ? "Simpan Perubahan" : "Tambah Produk"}
+                                <button
+                                    type="submit"
+                                    disabled={uploading}
+                                    className={`flex-1 bg-gold hover:bg-gold-dark text-white py-3 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-gold/20 flex items-center justify-center gap-2 ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}
+                                >
+                                    {uploading ? (
+                                        <>
+                                            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                            Menunggu Upload...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span className="material-icons-outlined text-lg">{editingId ? "save" : "add"}</span>
+                                            {editingId ? "Simpan Perubahan" : "Tambah Produk"}
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         </form>

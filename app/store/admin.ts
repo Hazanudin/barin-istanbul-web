@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 export interface ColorOption {
     name: string;
@@ -45,7 +44,7 @@ export interface OrderItem {
 
 export interface Order {
     id: string;
-    date: string; // ISO string
+    date: string;
     items: OrderItem[];
     total: number;
     itemCount: number;
@@ -58,37 +57,13 @@ export interface SiteSettings {
     socialLinks: SocialLinks;
 }
 
-interface AdminStore {
-    isAuthenticated: boolean;
-    products: Product[];
-    categories: string[];
-    colors: ColorOption[];
-    settings: SiteSettings;
-    orders: Order[];
-    login: (password: string) => boolean;
-    logout: () => void;
-    addProduct: (product: Product) => void;
-    updateProduct: (id: string, product: Partial<Product>) => void;
-    deleteProduct: (id: string) => void;
-    addCategory: (name: string) => void;
-    renameCategory: (oldName: string, newName: string) => void;
-    deleteCategory: (name: string) => void;
-    addColor: (color: ColorOption) => void;
-    updateColor: (oldName: string, updated: ColorOption) => void;
-    deleteColor: (name: string) => void;
-    updateSettings: (settings: Partial<SiteSettings>) => void;
-    updateHeroTexts: (texts: Partial<HeroTexts>) => void;
-    updateSocialLinks: (links: Partial<SocialLinks>) => void;
-    addOrder: (order: Order) => void;
-}
-
-const ADMIN_PASSWORD = "barin2026";
+// ========== DEFAULTS ==========
 
 const DEFAULT_DESCRIPTION = "Dibuat secara ahli di Bursa, hijab sutra premium ini menawarkan kilau mewah dan kenyamanan bernapas, sempurna untuk iklim tropis.";
 const DEFAULT_DETAILS = "Material: 100% Turkish Silk Satin Premium\nUkuran: S (100×100cm), M (110×110cm), L (115×115cm), XL (120×120cm)\nFinishing: Jahit tepi rapi (Hand-rolled hem)\nOpacity: Tidak menerawang saat dilipat\nCare: Hand wash only, setrika suhu rendah";
 const DEFAULT_SHIPPING = "Pengiriman gratis untuk pesanan di atas Rp 500.000.\nPesanan diproses dalam 1-2 hari kerja.\nGaransi pengembalian 7 hari jika produk cacat atau tidak sesuai.";
 
-const defaultCategories = ["Premium Silk", "Cotton Voile", "Chiffon", "Jersey", "Pashmina"];
+export const defaultCategories = ["Premium Silk", "Cotton Voile", "Chiffon", "Jersey", "Pashmina"];
 
 export const defaultColors: ColorOption[] = [
     { name: "Cream", hex: "#F5E6CA" },
@@ -103,7 +78,7 @@ export const defaultColors: ColorOption[] = [
     { name: "Sage", hex: "#9CAF88" },
 ];
 
-const defaultProducts: Product[] = [
+export const defaultProducts: Product[] = [
     {
         id: "1",
         name: "Medina Silk - Sand Beige",
@@ -184,60 +159,50 @@ const defaultProducts: Product[] = [
     },
 ];
 
-const DEFAULT_HERO_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuCR_m3nUhuD2EUFaeX1prcZG2n3QrxJmPmngFc0S77vvIhI_z6w-mlIvT45XRJSpgTEKyKhEQo2EqLFpO94hrYPyz6GVHxI2CcmHmIPrSaDBOwoDbvp7PoPOGmCMUlOB5CaqOopQHm73h8mTfMZdi9KNp3HZ6bmisp9mZW15dVHU755h-jRFT-FpeoVUR1FrMtPC771eaqAb-yZ6pYcJDAXuVsVqWmynPbsQTidVrgNi6ccQHTIp_qwptJBWYfILe1OzYMH8TQxjoY";
-
 const defaultSettings: SiteSettings = {
     waNumber: "6281234567890",
     heroTexts: {
-        badge: "Koleksi Terbaru",
-        titleLine1: "Elegansi",
-        titleHighlight: "Hijab Turki",
+        badge: "✦ PREMIUM TURKISH HIJAB",
+        titleLine1: "Elegansi dari",
+        titleHighlight: "Istanbul",
         subtitle:
-            "Koleksi Barinistanbul — kain premium Turki yang dirancang untuk keanggunan dan kenyamanan wanita Indonesia modern.",
-        ctaText: "Lihat Koleksi",
-        ctaSecondary: "Tentang Kami",
+            "Koleksi hijab premium kami ditenun dengan sutra terbaik Turki, menghadirkan keanggunan yang tak lekang oleh waktu untuk wanita Indonesia modern.",
+        ctaText: "Jelajahi Koleksi",
+        ctaSecondary: "Lihat Katalog",
     },
-    heroImage: DEFAULT_HERO_IMAGE,
+    heroImage: "",
     socialLinks: {
-        instagram: "",
-        facebook: "",
-        tiktok: "",
-        twitter: "",
+        instagram: "https://instagram.com/barinistanbul",
+        facebook: "https://facebook.com/barinistanbul",
+        tiktok: "https://tiktok.com/@barinistanbul",
+        twitter: "https://twitter.com/barinistanbul",
     },
 };
 
-// Generate sample orders for the last 7 days for demo purposes
 function generateSampleOrders(): Order[] {
     const orders: Order[] = [];
     const now = new Date();
-    const sampleItems = [
-        { productId: "1", productName: "Medina Silk - Sand Beige", price: 189000 },
-        { productId: "2", productName: "Anatolia Cotton - Olive", price: 145000 },
-        { productId: "3", productName: "Istanbul Night - Black", price: 225000 },
-        { productId: "4", productName: "Rose Quartz Pleated", price: 165000 },
-        { productId: "5", productName: "Terra Cotta Basic", price: 135000 },
-        { productId: "6", productName: "Bosphorus Breeze - Floral", price: 210000 },
-    ];
 
-    // Create orders over the last 7 days
-    const orderCounts = [3, 5, 2, 7, 4, 6, 3]; // orders per day
-    for (let day = 6; day >= 0; day--) {
+    for (let day = 0; day < 30; day++) {
         const date = new Date(now);
         date.setDate(date.getDate() - day);
-        const count = orderCounts[6 - day];
+        const orderCount = Math.floor(Math.random() * 3) + 1;
 
-        for (let i = 0; i < count; i++) {
-            const numItems = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i < orderCount; i++) {
             const items: OrderItem[] = [];
             let total = 0;
             let itemCount = 0;
+            const numItems = Math.floor(Math.random() * 3) + 1;
 
             for (let j = 0; j < numItems; j++) {
-                const sample = sampleItems[Math.floor(Math.random() * sampleItems.length)];
+                const sample =
+                    defaultProducts[
+                    Math.floor(Math.random() * defaultProducts.length)
+                    ];
                 const qty = Math.floor(Math.random() * 3) + 1;
                 items.push({
-                    productId: sample.productId,
-                    productName: sample.productName,
+                    productId: sample.id,
+                    productName: sample.name,
                     quantity: qty,
                     price: sample.price,
                 });
@@ -245,7 +210,6 @@ function generateSampleOrders(): Order[] {
                 itemCount += qty;
             }
 
-            // Random hour between 8-22
             const hour = Math.floor(Math.random() * 14) + 8;
             const minute = Math.floor(Math.random() * 60);
             date.setHours(hour, minute, 0, 0);
@@ -263,156 +227,286 @@ function generateSampleOrders(): Order[] {
     return orders;
 }
 
-export const useAdminStore = create<AdminStore>()(
-    persist(
-        (set, get) => ({
-            isAuthenticated: false,
-            products: defaultProducts,
-            categories: defaultCategories,
-            colors: defaultColors,
-            settings: defaultSettings,
-            orders: generateSampleOrders(),
+// ========== STORE TYPES ==========
 
-            login: (password: string) => {
-                if (password === ADMIN_PASSWORD) {
-                    set({ isAuthenticated: true });
-                    return true;
-                }
-                return false;
-            },
+interface AdminData {
+    products: Product[];
+    categories: string[];
+    colors: ColorOption[];
+    settings: SiteSettings;
+    orders: Order[];
+}
 
-            logout: () => set({ isAuthenticated: false }),
+interface AdminStore extends AdminData {
+    isAuthenticated: boolean;
+    isLoaded: boolean;
+    isSaving: boolean;
 
-            addProduct: (product) =>
-                set((state) => ({
-                    products: [...state.products, product],
-                })),
+    // Auth
+    login: (password: string) => boolean;
+    logout: () => void;
 
-            updateProduct: (id, updates) =>
-                set((state) => ({
-                    products: state.products.map((p) =>
-                        p.id === id ? { ...p, ...updates } : p
-                    ),
-                })),
+    // Data loading
+    loadFromServer: () => Promise<void>;
+    saveToServer: () => Promise<void>;
 
-            deleteProduct: (id) =>
-                set((state) => ({
-                    products: state.products.filter((p) => p.id !== id),
-                })),
+    // Products
+    addProduct: (product: Product) => void;
+    updateProduct: (id: string, product: Partial<Product>) => void;
+    deleteProduct: (id: string) => void;
 
-            addCategory: (name) =>
-                set((state) => ({
-                    categories: state.categories.includes(name)
-                        ? state.categories
-                        : [...state.categories, name],
-                })),
+    // Categories
+    addCategory: (name: string) => void;
+    renameCategory: (oldName: string, newName: string) => void;
+    deleteCategory: (name: string) => void;
 
-            renameCategory: (oldName, newName) =>
-                set((state) => ({
-                    categories: state.categories.map((c) =>
-                        c === oldName ? newName : c
-                    ),
-                    // Also update all products that reference this category
-                    products: state.products.map((p) =>
-                        p.category === oldName ? { ...p, category: newName } : p
-                    ),
-                })),
+    // Colors
+    addColor: (color: ColorOption) => void;
+    updateColor: (oldName: string, updated: ColorOption) => void;
+    deleteColor: (name: string) => void;
 
-            deleteCategory: (name) =>
-                set((state) => ({
-                    categories: state.categories.filter((c) => c !== name),
-                })),
+    // Settings
+    updateSettings: (settings: Partial<SiteSettings>) => void;
+    updateHeroTexts: (texts: Partial<HeroTexts>) => void;
+    updateSocialLinks: (links: Partial<SocialLinks>) => void;
 
-            addColor: (color) =>
-                set((state) => ({
-                    colors: state.colors.some((c) => c.name === color.name)
-                        ? state.colors
-                        : [...state.colors, color],
-                })),
+    // Orders
+    addOrder: (order: Order) => void;
+}
 
-            updateColor: (oldName, updated) =>
-                set((state) => ({
-                    colors: state.colors.map((c) =>
-                        c.name === oldName ? updated : c
-                    ),
-                    // Update all products that reference this color
-                    products: state.products.map((p) =>
-                        p.color === oldName
-                            ? { ...p, color: updated.name, colorHex: updated.hex }
-                            : p
-                    ),
-                })),
+const ADMIN_PASSWORD = "barin2026";
 
-            deleteColor: (name) =>
-                set((state) => ({
-                    colors: state.colors.filter((c) => c.name !== name),
-                })),
+// Helper: save data to server (debounced)
+let saveTimeout: NodeJS.Timeout | null = null;
 
-            updateSettings: (newSettings) =>
-                set((state) => ({
-                    settings: { ...state.settings, ...newSettings },
-                })),
-
-            updateHeroTexts: (texts) =>
-                set((state) => ({
-                    settings: {
-                        ...state.settings,
-                        heroTexts: { ...state.settings.heroTexts, ...texts },
-                    },
-                })),
-
-            updateSocialLinks: (links) =>
-                set((state) => ({
-                    settings: {
-                        ...state.settings,
-                        socialLinks: { ...state.settings.socialLinks, ...links },
-                    },
-                })),
-
-            addOrder: (order) =>
-                set((state) => ({
-                    orders: [...state.orders, order],
-                })),
-        }),
-        {
-            name: "barin-admin-store",
-            merge: (persistedState: any, currentState: AdminStore) => {
-                const merged = { ...currentState, ...persistedState };
-                // Deep merge settings to ensure new nested properties get defaults
-                merged.settings = {
-                    ...currentState.settings,
-                    ...persistedState?.settings,
-                    heroTexts: {
-                        ...currentState.settings.heroTexts,
-                        ...persistedState?.settings?.heroTexts,
-                    },
-                    socialLinks: {
-                        ...currentState.settings.socialLinks,
-                        ...persistedState?.settings?.socialLinks,
-                    },
-                };
-                // Ensure orders array exists
-                if (!merged.orders || !Array.isArray(merged.orders)) {
-                    merged.orders = generateSampleOrders();
-                }
-                // Ensure categories array exists
-                if (!merged.categories || !Array.isArray(merged.categories)) {
-                    merged.categories = defaultCategories;
-                }
-                // Ensure colors array exists
-                if (!merged.colors || !Array.isArray(merged.colors)) {
-                    merged.colors = defaultColors;
-                }
-                // Ensure products have new fields with defaults
-                merged.products = (merged.products || defaultProducts).map((p: any) => ({
-                    description: DEFAULT_DESCRIPTION,
-                    details: DEFAULT_DETAILS,
-                    shippingInfo: DEFAULT_SHIPPING,
-                    colorHex: '#888888',
-                    ...p,
-                }));
-                return merged;
-            },
+function debouncedSave(getData: () => AdminData) {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(async () => {
+        try {
+            const data = getData();
+            await fetch("/api/data", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+        } catch (err) {
+            console.error("Failed to save to server:", err);
         }
-    )
-);
+    }, 500);
+}
+
+export const useAdminStore = create<AdminStore>()((set, get) => ({
+    // Initial state
+    isAuthenticated: false,
+    isLoaded: false,
+    isSaving: false,
+    products: defaultProducts,
+    categories: defaultCategories,
+    colors: defaultColors,
+    settings: defaultSettings,
+    orders: generateSampleOrders(),
+
+    // Auth (still uses local check, no need to persist server-side)
+    login: (password: string) => {
+        if (password === ADMIN_PASSWORD) {
+            set({ isAuthenticated: true });
+            // Save auth to sessionStorage so it survives page refresh
+            if (typeof window !== "undefined") {
+                sessionStorage.setItem("barin-auth", "true");
+            }
+            return true;
+        }
+        return false;
+    },
+
+    logout: () => {
+        set({ isAuthenticated: false });
+        if (typeof window !== "undefined") {
+            sessionStorage.removeItem("barin-auth");
+        }
+    },
+
+    // Load data from Vercel Blob
+    loadFromServer: async () => {
+        try {
+            const res = await fetch("/api/data", { cache: "no-store" });
+            const { data } = await res.json();
+
+            if (data) {
+                // Ensure products have all required fields with defaults
+                const products = (data.products || defaultProducts).map(
+                    (p: any) => ({
+                        description: DEFAULT_DESCRIPTION,
+                        details: DEFAULT_DETAILS,
+                        shippingInfo: DEFAULT_SHIPPING,
+                        colorHex: "#888888",
+                        ...p,
+                    })
+                );
+
+                set({
+                    products,
+                    categories: data.categories || defaultCategories,
+                    colors: data.colors || defaultColors,
+                    settings: {
+                        ...defaultSettings,
+                        ...data.settings,
+                        heroTexts: {
+                            ...defaultSettings.heroTexts,
+                            ...data.settings?.heroTexts,
+                        },
+                        socialLinks: {
+                            ...defaultSettings.socialLinks,
+                            ...data.settings?.socialLinks,
+                        },
+                    },
+                    orders: data.orders || generateSampleOrders(),
+                    isLoaded: true,
+                });
+            } else {
+                set({ isLoaded: true });
+            }
+
+            // Restore auth from sessionStorage
+            if (typeof window !== "undefined") {
+                const auth = sessionStorage.getItem("barin-auth");
+                if (auth === "true") {
+                    set({ isAuthenticated: true });
+                }
+            }
+        } catch (err) {
+            console.error("Failed to load from server:", err);
+            set({ isLoaded: true });
+        }
+    },
+
+    // Save data to Vercel Blob
+    saveToServer: async () => {
+        const state = get();
+        debouncedSave(() => ({
+            products: state.products,
+            categories: state.categories,
+            colors: state.colors,
+            settings: state.settings,
+            orders: state.orders,
+        }));
+    },
+
+    // Products
+    addProduct: (product) => {
+        set((state) => ({ products: [...state.products, product] }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    updateProduct: (id, updates) => {
+        set((state) => ({
+            products: state.products.map((p) =>
+                p.id === id ? { ...p, ...updates } : p
+            ),
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    deleteProduct: (id) => {
+        set((state) => ({
+            products: state.products.filter((p) => p.id !== id),
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    // Categories
+    addCategory: (name) => {
+        set((state) => ({
+            categories: state.categories.includes(name)
+                ? state.categories
+                : [...state.categories, name],
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    renameCategory: (oldName, newName) => {
+        set((state) => ({
+            categories: state.categories.map((c) =>
+                c === oldName ? newName : c
+            ),
+            products: state.products.map((p) =>
+                p.category === oldName ? { ...p, category: newName } : p
+            ),
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    deleteCategory: (name) => {
+        set((state) => ({
+            categories: state.categories.filter((c) => c !== name),
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    // Colors
+    addColor: (color) => {
+        set((state) => ({
+            colors: state.colors.some((c) => c.name === color.name)
+                ? state.colors
+                : [...state.colors, color],
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    updateColor: (oldName, updated) => {
+        set((state) => ({
+            colors: state.colors.map((c) =>
+                c.name === oldName ? updated : c
+            ),
+            products: state.products.map((p) =>
+                p.color === oldName
+                    ? { ...p, color: updated.name, colorHex: updated.hex }
+                    : p
+            ),
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    deleteColor: (name) => {
+        set((state) => ({
+            colors: state.colors.filter((c) => c.name !== name),
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    // Settings
+    updateSettings: (newSettings) => {
+        set((state) => ({
+            settings: { ...state.settings, ...newSettings },
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    updateHeroTexts: (texts) => {
+        set((state) => ({
+            settings: {
+                ...state.settings,
+                heroTexts: { ...state.settings.heroTexts, ...texts },
+            },
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    updateSocialLinks: (links) => {
+        set((state) => ({
+            settings: {
+                ...state.settings,
+                socialLinks: { ...state.settings.socialLinks, ...links },
+            },
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+
+    // Orders
+    addOrder: (order) => {
+        set((state) => ({
+            orders: [...state.orders, order],
+        }));
+        setTimeout(() => get().saveToServer(), 0);
+    },
+}));
