@@ -72,12 +72,7 @@ export default function HeroSection() {
                     </motion.div>
 
                     {/* Right: Image */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                        className="order-1 md:order-2 relative"
-                    >
+                    <div className="order-1 md:order-2 relative">
                         <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
                             <Image
                                 src={heroImage}
@@ -114,7 +109,7 @@ export default function HeroSection() {
                                 </div>
                             </div>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
